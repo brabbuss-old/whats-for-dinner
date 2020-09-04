@@ -17,8 +17,8 @@ function getRandomDishFromFoodType() {
           break;
       }
   }
-  alert(selectedValue.toString());
-  return selectedValue
+  console.log(selectedValue)
+  event.preventDefault();
 };
 
 
