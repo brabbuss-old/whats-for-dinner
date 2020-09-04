@@ -8,3 +8,90 @@ red - #ee5253
 
 */
 
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+.hero-image {
+  background-image: url(./assets/burger-friends.jpg); /* The image used */
+  background-color: red; /* Used if the image is unavailable */
+  height: 800px; /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  margin: 0px;
+}
+
+/* Header */
+
+.header {
+  background-color: #3AB9B2;
+  justify-content: space-between;
+  display: flex;
+  width: 100%;
+}
+
+.header-text {
+  padding-left: 30px;
+}
+
+.header-button {
+  border: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 15px;
+  border-radius: 5px;
+}
+
+/* Body */
+
+.wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+.wrapper > .box {
+  height: 410px;
+  min-width: 520px;
+  background-color: rgba(225, 225, 225, .9);
+  margin: 50px;
+}
+
+.asterisk {
+  color: red;
+}
+
+.box-title {
+  font-weight: bold;
+  padding: 50px 0px 0px 50px;
+}
+
+.box-right {
+
+}
+
+.radio {
+  margin-left: 50px;
+  margin-bottom: 30px;
+  list-style-type: square;
+}
+
+.radio-text {
+  font-size: 19px;
+}
+
+.cook-button {
+  border: none;
+  background-color: #3AB9B2;
+  font-size: 15px;
+  margin-left: 50px;
+  padding: 10px 55px;
+  border-radius: 5px;
+}
+
+#cookpot {
+  max-height: 150px;
+  /* display: block; */
+  /* margin: auto; */
+  padding-top: 120px;
+}
