@@ -1,4 +1,4 @@
-var sides = [
+var side = [
   "Miso Glazed Carrots",
   "Coleslaw",
   "Garden Salad",
@@ -11,7 +11,7 @@ var sides = [
   "Hush Puppies",
 ];
 
-var mains = [
+var main = [
   "Spaghetti and Meatballs",
   "Pineapple Chicken",
   "Shakshuka",
@@ -47,3 +47,9 @@ var dessert = [
   "Croissants",
   "Eclairs",
 ];
+
+// var entireMeal {
+//   function() {
+//
+//   }
+// }

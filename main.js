@@ -1,25 +1,33 @@
 // Globals
+
+
 // Buttons
 var addRecipeButton = document.querySelector('#add-recipe-button');
 var letsCookButton = document.querySelector('#lets-cook-button');
 
 
 // Event Listeners
-letsCookButton.addEventListener('click', getRandomDishFromFoodType);
+letsCookButton.addEventListener('click', selectFoodType);
 
 // Event Handlers
-function getRandomDishFromFoodType() {
+function selectFoodType() {
   var radioButtons = document.querySelectorAll('input[name="food-type"]');
-  let selectedValue;
+  let foodType;
   for (const aRadioButton of radioButtons) {
-      if (aRadioButton.checked) {
-          selectedValue = aRadioButton.value;
-          break;
-      }
+    if (aRadioButton.checked) {
+      foodType = aRadioButton.value;
+      break;
+    }
   }
-  console.log(selectedValue)
+  getRandomDish(window[foodType]);
   event.preventDefault();
 };
+
+// Non-Handler Functions
+function getRandomDish(foodTypeArray) {
+  console.log(foodTypeArray[Math.floor(Math.random() * (foodTypeArray.length))]);
+  return foodTypeArray[Math.floor(Math.random() * (foodTypeArray.length))];    // how to include 0
+}
 
 
 /*
