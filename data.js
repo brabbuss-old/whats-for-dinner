@@ -47,9 +47,3 @@ var dessert = [
   "Croissants",
   "Eclairs",
 ];
-
-// var entireMeal {
-//   function() {
-//
-//   }
-// }

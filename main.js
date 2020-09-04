@@ -19,16 +19,33 @@ function selectFoodType() {
       break;
     }
   }
-  getRandomDish(window[foodType]);
+  getRandomDish(foodType);
   event.preventDefault();
 };
 
 // Non-Handler Functions
-function getRandomDish(foodTypeArray) {
-  console.log(foodTypeArray[Math.floor(Math.random() * (foodTypeArray.length))]);
-  return foodTypeArray[Math.floor(Math.random() * (foodTypeArray.length))];    // how to include 0
+function randomIndex(foodType) {
+  return foodType[Math.floor(Math.random() * (foodType.length))]; //for refactor all random fxn
 }
 
+function makeMeal() {
+  var mealSide = randomIndex(side);
+  var mealMain = randomIndex(main);
+  var mealDessert = randomIndex(dessert);
+  var wholeMeal = {Side: mealSide, Main: mealMain, Dessert: mealDessert};
+  console.log(wholeMeal);      // log for code check
+  return wholeMeal;
+}
+
+function getRandomDish(foodTypeArray) {
+  if (foodTypeArray !== "meal") {
+    var foodTypeArray = window[foodTypeArray];
+    console.log(randomIndex(foodTypeArray));      // log for code check
+    return randomIndex(foodTypeArray);
+  } else {
+    makeMeal();
+  }
+}
 
 /*
 select a radio option
