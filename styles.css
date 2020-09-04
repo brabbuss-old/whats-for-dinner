@@ -35,7 +35,7 @@ html {
   padding-left: 30px;
 }
 
-.header-button {
+#add-recipe-button {
   border: none;
   padding-left: 10px;
   padding-right: 10px;
@@ -70,6 +70,12 @@ html {
 
 }
 
+/* .form {
+  margin-left: 50px;
+  margin-bottom: 30px;
+  list-style-type: square;
+} */
+
 .radio {
   margin-left: 50px;
   margin-bottom: 30px;
@@ -80,7 +86,7 @@ html {
   font-size: 19px;
 }
 
-.cook-button {
+#lets-cook-button {
   border: none;
   background-color: #3AB9B2;
   font-size: 15px;
