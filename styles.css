@@ -96,7 +96,8 @@ html {
 /* Box Right Contents */
 
 #box-right {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-content: center;
 }
@@ -104,22 +105,30 @@ html {
 h5 {
   font-style: italic;
   font-size: 19px;
-  display: flex;
-  justify-content: center;
+  text-align: center;
   margin-bottom: 0px;
 }
 
-#this-dish {
-  margin-top: 0px;
-  display: flex;
-  justify-content: center;
+.dish {
+  padding-left: 70px;
+  padding-right: 70px;
+  margin-top: 10px;
+  text-align: center;
   font-size: 40px;
   font-weight: 900;
 }
 
+.meal {
+  padding-left: 70px;
+  padding-right: 70px;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: 900;
+  font-size: 30px;
+}
+
 #cookpot {
   max-height: 150px;
-  padding-top: 120px;
 }
 
 /* Other Styling */

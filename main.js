@@ -7,12 +7,12 @@ var letsCookButton = document.querySelector('#lets-cook-button');
 
 
 // Event Listeners
-letsCookButton.addEventListener('click', displayDish => {
+letsCookButton.addEventListener('click', displayDishRight => {
   selectFoodType();
   if (typeof cookpot !== 'undefined') {
     hideCookpot();
   }
-  displayDishAndButton();
+  displayDish();
 });
 
 // Event Handlers
@@ -34,15 +34,25 @@ function hideCookpot() {
     cookpot.classList.add("hidden")           // available also classlits.REMOVE***
 }
 
-function displayDishAndButton() {
-  var boxRight = document.querySelector("#box-right")
+function displayDish() {
+  var boxRight = document.querySelector("#box-right");
   var dishBlock =
    `
     <h5>You should make:</h5>
     <p id="this-dish">${currentDish}!</p>
     `
-    boxRight.innerHTML = dishBlock
+    boxRight.innerHTML = dishBlock;
+
+  var thisDish = document.querySelector("#this-dish");
+
+  if (currentDish.length > 45) {
+    thisDish.classList.add("meal")
+  } else {
+    thisDish.classList.remove("meal");
+    thisDish.classList.add("dish")
+  }
 }
+
 
 // Non-Handler Functions
 function randomIndex(foodType) {
@@ -52,7 +62,6 @@ function randomIndex(foodType) {
 function getRandomDish(foodTypeArray) {
   if (foodTypeArray !== "meal") {
     var foodTypeArray = window[foodTypeArray];
-    // console.log(randomIndex(foodTypeArray));      // log for code check
     return currentDish = randomIndex(foodTypeArray);
   } else {
     makeMeal();
@@ -63,20 +72,22 @@ function makeMeal() {
   var mealSide = randomIndex(side);
   var mealMain = randomIndex(main);
   var mealDessert = randomIndex(dessert);
-  var wholeMeal = {Side: mealSide, Main: mealMain, Dessert: mealDessert};
+  var wholeMeal = {Side: mealSide, Main: mealMain, Dessert: mealDessert};   //  just in case
   console.log(wholeMeal);      // log for code check
-  return wholeMeal;
+  return currentDish = `${mealMain} with a side of ${mealSide} and ${mealDessert} for dessert!`
 }
 
 /*
-
-styling:
-  dish title pushed into small font (see comp)
-  dish is pushed into big font (see comp)
-  elements placed in wrapper (take argument of side, main, dessert. or meal) that can toggle hidden
-    place elements in data model to keep code clean and dry
 reset button displayed
-  reset unhides cookpot, hides/deletes dishBlock
+  insert Button with lets cook click as separate element from dish text
+  for button propogation use if not !== similar to cookpot validation
+  reset button has .hidden tag on page load
+  .classList.remove(".hidden") on lets cookpot
+  opposite when clicking clear
+click
+  unhides cookpot
+  hides/deletes dishBlock removeAdjacentHTML
+  hides reset button
 
 random meal is displayed interpolated text (see comp)
 
