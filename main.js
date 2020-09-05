@@ -9,7 +9,9 @@ var letsCookButton = document.querySelector('#lets-cook-button');
 // Event Listeners
 letsCookButton.addEventListener('click', displayDish => {
   selectFoodType();
-  hideCookpot();
+  if (typeof cookpot !== 'undefined') {
+    hideCookpot();
+  }
   displayDishAndButton();
 });
 
@@ -29,7 +31,7 @@ function selectFoodType() {
 
 function hideCookpot() {
   var cookpot = document.querySelector("#cookpot");
-  cookpot.classList.add("hidden")           // available also classlits.REMOVE***
+    cookpot.classList.add("hidden")           // available also classlits.REMOVE***
 }
 
 function displayDishAndButton() {
@@ -41,7 +43,7 @@ function displayDishAndButton() {
       <p id="this-dish">${currentDish}</p>
     </div>
     `
-    boxRight.insertAdjacentHTML("afterbegin", dishBlock)
+    boxRight.innerHTML = dishBlock
 }
 
 // Non-Handler Functions
@@ -70,7 +72,7 @@ function makeMeal() {
 
 /*
 
-random dish is retrieved
+styling:
   dish title pushed into small font (see comp)
   dish is pushed into big font (see comp)
   elements placed in wrapper (take argument of side, main, dessert. or meal) that can toggle hidden
