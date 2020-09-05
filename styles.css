@@ -43,7 +43,7 @@ html {
   border-radius: 5px;
 }
 
-/* Body */
+/* Body Boxes*/
 
 .wrapper {
   display: flex;
@@ -57,10 +57,6 @@ html {
   margin: 50px;
 }
 
-.asterisk {
-  color: red;
-}
-
 .box-title {
   font-weight: bold;
   padding: 50px 0px 0px 50px;
@@ -70,11 +66,17 @@ html {
 
 }
 
+/* Box Contents */
+
 /* .form {
   margin-left: 50px;
   margin-bottom: 30px;
   list-style-type: square;
 } */
+
+.asterisk {
+  color: red;
+}
 
 .radio {
   margin-left: 50px;
@@ -95,9 +97,28 @@ html {
   border-radius: 5px;
 }
 
+/* Right Side Box */
+
+#displayed-dish-block {
+  display:block;
+}
+
+h5 {
+
+}
+
+#this-dish {
+  font-size: 28px;
+  font-weight: 900;
+}
+
 #cookpot {
   max-height: 150px;
-  /* display: block; */
-  /* margin: auto; */
   padding-top: 120px;
+}
+
+/* Other Styling */
+
+.hidden {
+  display: none;
 }
