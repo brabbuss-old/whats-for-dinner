@@ -62,11 +62,7 @@ html {
   padding: 50px 0px 0px 50px;
 }
 
-.box-right {
-
-}
-
-/* Box Contents */
+/* Box Left Contents */
 
 /* .form {
   margin-left: 50px;
@@ -97,18 +93,27 @@ html {
   border-radius: 5px;
 }
 
-/* Right Side Box */
+/* Box Right Contents */
 
-#displayed-dish-block {
-  display:block;
+#box-right {
+  display: grid;
+  justify-content: center;
+  align-content: center;
 }
 
 h5 {
-
+  font-style: italic;
+  font-size: 19px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0px;
 }
 
 #this-dish {
-  font-size: 28px;
+  margin-top: 0px;
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
   font-weight: 900;
 }
 

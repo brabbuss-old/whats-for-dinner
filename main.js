@@ -38,10 +38,8 @@ function displayDishAndButton() {
   var boxRight = document.querySelector("#box-right")
   var dishBlock =
    `
-    <div id="displayed-dish-block">
-      <h5>You should make:</h5>
-      <p id="this-dish">${currentDish}</p>
-    </div>
+    <h5>You should make:</h5>
+    <p id="this-dish">${currentDish}!</p>
     `
     boxRight.innerHTML = dishBlock
 }
@@ -85,6 +83,11 @@ random meal is displayed interpolated text (see comp)
 Future:
 -hide button/radio on click replace with 'start again' or something
 -
+
+<div id="displayed-dish-block">
+  <h5>You should make:</h5>
+  <p id="this-dish">${currentDish}</p>
+</div>
 
 
 */
