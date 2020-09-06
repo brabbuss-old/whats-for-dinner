@@ -4,55 +4,90 @@ var currentDish = ""
 // Buttons
 var addRecipeButton = document.querySelector('#add-recipe-button');
 var letsCookButton = document.querySelector('#lets-cook-button');
-
+var clearButton = document.querySelector('#clear-button');
+var radioSelection;
 
 // Event Listeners
-letsCookButton.addEventListener('click', displayDishRight => {
+letsCookButton.addEventListener('click', letsCookDisplayContentRightBox => {
   selectFoodType();
-  if (typeof cookpot !== 'undefined') {
-    hideCookpot();
+  if (radioSelection !== false) {
+    displayDish();
+    unhideClearButton();
   }
-  displayDish();
 });
+
+clearButton.addEventListener('click', clearContentRightBox => {
+  unDisplayDish();
+  unhideCookpot();
+})
+
 
 // Event Handlers
 function selectFoodType() {
-  var radioButtons = document.querySelectorAll('input[name="food-type"]');
+  // var radioSelection;         // why doesn't this work and become global?
+  let radioButtons = document.querySelectorAll('input[name="food-type"]');
   let foodType;
+
   for (const aRadioButton of radioButtons) {
     if (aRadioButton.checked) {
       foodType = aRadioButton.value;
-      break;
+      hideCookpot();
+      getRandomDish(foodType);
+      radioSelection = true;
+      break
+    } else {
+      radioSelection = false
     }
   }
-  getRandomDish(foodType);
   event.preventDefault();
 };
 
 function hideCookpot() {
-  var cookpot = document.querySelector("#cookpot");
-    cookpot.classList.add("hidden")           // available also classlits.REMOVE***
+  let cookpot = document.querySelector("#cookpot");
+  cookpot.classList.add("hidden")
+}
+
+function unhideCookpot() {
+  let cookpot = document.querySelector("#cookpot");
+  cookpot.classList.remove("hidden");
 }
 
 function displayDish() {
-  var boxRight = document.querySelector("#box-right");
-  var dishBlock =
+  let boxRight = document.querySelector("#display-dish-section");
+  let dishBlock =
    `
-    <h5>You should make:</h5>
-    <p id="this-dish">${currentDish}!</p>
+    <h5>You should make:</h5><br>
+    <p id="this-dish">${currentDish}</p><br>
     `
     boxRight.innerHTML = dishBlock;
+    // boxRight.insertAdjacentHTML("afterbegin", dishBlock);
 
-  var thisDish = document.querySelector("#this-dish");
+  let thisDish = document.querySelector("#this-dish");
 
   if (currentDish.length > 45) {
     thisDish.classList.add("meal")
   } else {
-    thisDish.classList.remove("meal");
+    thisDish.classList.remove("meal");          //for font size adjustment for longer meal string
     thisDish.classList.add("dish")
   }
 }
 
+function unDisplayDish() {
+  var element = document.getElementById("display-dish-section");
+  while (element.firstChild) {                // like a dynamically updated real-time for loop
+    element.removeChild(element.firstChild);
+  }
+  radioClear();
+  hideClearButton();
+}
+
+function unhideClearButton() {
+  clearButton.classList.remove("hidden")
+}
+
+function hideClearButton() {
+  clearButton.classList.add("hidden")
+}
 
 // Non-Handler Functions
 function randomIndex(foodType) {
@@ -61,7 +96,7 @@ function randomIndex(foodType) {
 
 function getRandomDish(foodTypeArray) {
   if (foodTypeArray !== "meal") {
-    var foodTypeArray = window[foodTypeArray];
+    var foodTypeArray = window[foodTypeArray];      //   turn sting into usable js
     return currentDish = randomIndex(foodTypeArray);
   } else {
     makeMeal();
@@ -77,28 +112,15 @@ function makeMeal() {
   return currentDish = `${mealMain} with a side of ${mealSide} and ${mealDessert} for dessert!`
 }
 
+function radioClear() {
+  let radioButtons = document.getElementsByName('food-type');
+  for (const aRadioButton of radioButtons) {
+    aRadioButton.checked = false;
+  }
+}
+
+
 /*
-reset button displayed
-  insert Button with lets cook click as separate element from dish text
-  for button propogation use if not !== similar to cookpot validation
-  reset button has .hidden tag on page load
-  .classList.remove(".hidden") on lets cookpot
-  opposite when clicking clear
-click
-  unhides cookpot
-  hides/deletes dishBlock removeAdjacentHTML
-  hides reset button
-
-random meal is displayed interpolated text (see comp)
-
-Future:
--hide button/radio on click replace with 'start again' or something
--
-
-<div id="displayed-dish-block">
-  <h5>You should make:</h5>
-  <p id="this-dish">${currentDish}</p>
-</div>
 
 
 */
