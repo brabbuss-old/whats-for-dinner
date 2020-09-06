@@ -6,14 +6,20 @@ var addRecipeButton = document.querySelector('#add-recipe-button');
 var letsCookButton = document.querySelector('#lets-cook-button');
 var clearButton = document.querySelector('#clear-button');
 var addNewButton = document.querySelector('#add-new-button');
+var findRecipesButton = document.querySelector('#find-recipes-button');
 var radioSelection;
 
 // Event Listeners
 letsCookButton.addEventListener('click', letsCookDisplayContentRightBox => {
   selectFoodType();
-  if (radioSelection !== false) {
+  if (radioSelection !== false && radioSelection !== "meal") {
     displayDish();
     unhideClearButton();
+    unhideFindRecipesButton();
+  } else if (radioSelection === "meal") {
+    displayDish();
+    unhideClearButton();
+    hideFindRecipesButton();
   }
 });
 
@@ -30,6 +36,9 @@ addNewButton.addEventListener('click', addNewRecipe => {
   saveNewRecipeData();
 });
 
+findRecipesButton.addEventListener('click', findRecipes => {
+  findMeRecipes();
+})
 
 // Event Handlers
 function selectFoodType() {
@@ -42,7 +51,7 @@ function selectFoodType() {
       foodType = aRadioButton.value;
       hideCookpot();
       getRandomDish(foodType);
-      radioSelection = true;
+      radioSelection = foodType;
       break
     } else {
       radioSelection = false
@@ -88,10 +97,19 @@ function unDisplayDish() {
   }
   radioClear();
   hideClearButton();
+  hideFindRecipesButton();
 }
 
 function unhideClearButton() {
   clearButton.classList.remove("hidden")
+}
+
+function unhideFindRecipesButton() {
+  findRecipesButton.classList.remove("hidden")
+}
+
+function hideFindRecipesButton() {
+  findRecipesButton.classList.add("hidden")
 }
 
 function hideClearButton() {
@@ -105,16 +123,6 @@ function showAddRecipeBar() {
   form.classList.remove("hidden");
 }
 
-
-
-//
-// function clearFields() {
-//   userTitleInput.value = ''
-//   userCoverInput.value = ''
-//   userDescriptor1Input.value = ''
-//   userDescriptor2Input.value = ''
-// }
-
 function saveNewRecipeData() {
   let recipeType = document.querySelector("#add-recipe-type-input").value;
   let recipeName = document.querySelector("#add-recipe-name-input").value;
@@ -126,6 +134,10 @@ function saveNewRecipeData() {
   recipeTypeJS.push(recipeName)
 
   event.preventDefault();
+}
+
+function findMeRecipes(string) {
+  window.open(`https://www.allrecipes.com/search/?sitesearch=&wt=${currentDish}`)
 }
 
 // Non-Handler Functions
@@ -163,4 +175,9 @@ function radioClear() {
 display new food with new recipe?
 dont add dupes?
 upper case first letter(s)?
+clear fiel after added
+explore by ingredient on epicurious
+pop search results based on decision (scope some recipes)
+
+fancy radio buttons css
 */
