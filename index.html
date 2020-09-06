@@ -7,27 +7,37 @@
   <body class="hero-image">
     <div class="header">
       <h2 class="header-text">What's for Dinner?</h2>
-      <button class="header-button" id="add-recipe-button">ADD A RECIPE</button>
+      <button id="add-recipe-button">ADD A RECIPE</button>
     </div>
     <main class="wrapper">
       <div class="box" id="box-left">
         <h1 class="box-title">What are you looking for?<span class="asterisk">*</span></h1>
+        <form class="form">
           <input class="radio" type="radio" name="food-type" value="side">
           <label class="radio-text">Side</label><br>
-          <input class="radio" type="radio" name="food-type" value="main-dish">
+          <input class="radio" type="radio" name="food-type" value="main">
           <label class="radio-text">Main Dish</label><br>
           <input class="radio" type="radio" name="food-type" value="dessert">
           <label class="radio-text">Dessert</label><br>
-          <input class="radio" type="radio" name="food-type" value="entire-meal">
+          <input class="radio" type="radio" name="food-type" value="meal">
           <label class="radio-text">Entire Meal</label><br>
-          <button class="cook-button" id="lets-cook-button">LET'S COOK!</button>
+          <button id="lets-cook-button">LET'S COOK!</button>
+        </form>
       </div>
       <div class="box" id="box-right">
-        <img src="./assets/cookpot.svg" alt="Cookpot" id="cookpot">
+        <div>
+          <img src="./assets/cookpot.svg" alt="Cookpot" id="cookpot">
+        </div>
+        <div id="display-dish-section">
+        </div>
+        <div>
+          <button id="clear-button" class="hidden">CLEAR</button><br>
+        </div>
       </div>
     </main>
     <footer>
     </footer>
   </body>
+  <script src="data.js"></script>
   <script type="text/javascript" src="main.js"></script>
 </html>

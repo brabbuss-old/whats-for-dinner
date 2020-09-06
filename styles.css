@@ -35,7 +35,7 @@ html {
   padding-left: 30px;
 }
 
-.header-button {
+#add-recipe-button {
   border: none;
   padding-left: 10px;
   padding-right: 10px;
@@ -43,7 +43,7 @@ html {
   border-radius: 5px;
 }
 
-/* Body */
+/* Body Boxes*/
 
 .wrapper {
   display: flex;
@@ -55,10 +55,7 @@ html {
   min-width: 520px;
   background-color: rgba(225, 225, 225, .9);
   margin: 50px;
-}
-
-.asterisk {
-  color: red;
+  position: relative;
 }
 
 .box-title {
@@ -66,8 +63,16 @@ html {
   padding: 50px 0px 0px 50px;
 }
 
-.box-right {
+/* Box Left Contents */
 
+/* .form {
+  margin-left: 50px;
+  margin-bottom: 30px;
+  list-style-type: square;
+} */
+
+.asterisk {
+  color: red;
 }
 
 .radio {
@@ -80,7 +85,7 @@ html {
   font-size: 19px;
 }
 
-.cook-button {
+#lets-cook-button {
   border: none;
   background-color: #3AB9B2;
   font-size: 15px;
@@ -89,9 +94,61 @@ html {
   border-radius: 5px;
 }
 
+/* Box Right Contents */
+
+#box-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+h5 {
+  font-style: italic;
+  font-size: 19px;
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+.dish {
+  padding-left: 70px;
+  padding-right: 70px;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 40px;
+  font-weight: 900;
+  width: 380px;
+}
+
+.meal {
+  padding-left: 70px;
+  padding-right: 70px;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: 900;
+  font-size: 30px;
+  width: 380px;
+}
+
 #cookpot {
   max-height: 150px;
-  /* display: block; */
-  /* margin: auto; */
-  padding-top: 120px;
+}
+
+#clear-button {
+  background-color: #95a5a6;
+  font-size: 15px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  position: absolute;
+  padding: 10px 17px;
+  top: 85%;
+  left: 80%;
+}
+/* Other Styling */
+
+.hidden {
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
 }
