@@ -5,6 +5,7 @@ var currentDish = ""
 var addRecipeButton = document.querySelector('#add-recipe-button');
 var letsCookButton = document.querySelector('#lets-cook-button');
 var clearButton = document.querySelector('#clear-button');
+var addNewButton = document.querySelector('#add-new-button');
 var radioSelection;
 
 // Event Listeners
@@ -19,7 +20,15 @@ letsCookButton.addEventListener('click', letsCookDisplayContentRightBox => {
 clearButton.addEventListener('click', clearContentRightBox => {
   unDisplayDish();
   unhideCookpot();
-})
+});
+
+addRecipeButton.addEventListener('click', unHideAddRecipeBar => {
+  showAddRecipeBar();
+});
+
+addNewButton.addEventListener('click', addNewRecipe => {
+  saveNewRecipeData();
+});
 
 
 // Event Handlers
@@ -89,6 +98,36 @@ function hideClearButton() {
   clearButton.classList.add("hidden")
 }
 
+function showAddRecipeBar() {
+  let recipeBar = document.querySelector("#recipe-bar");
+  let form = document.querySelector("#recipe-form");
+  recipeBar.classList.remove("hidden");
+  form.classList.remove("hidden");
+}
+
+
+
+//
+// function clearFields() {
+//   userTitleInput.value = ''
+//   userCoverInput.value = ''
+//   userDescriptor1Input.value = ''
+//   userDescriptor2Input.value = ''
+// }
+
+function saveNewRecipeData() {
+  let recipeType = document.querySelector("#add-recipe-type-input").value;
+  let recipeName = document.querySelector("#add-recipe-name-input").value;
+
+  recipeType.toLowerCase();  // lowcase to access data array
+
+  let recipeTypeJS = window[recipeType.toLowerCase().split(" ")[0]];  //converts from string
+
+  recipeTypeJS.push(recipeName)
+
+  event.preventDefault();
+}
+
 // Non-Handler Functions
 function randomIndex(foodType) {
   return foodType[Math.floor(Math.random() * (foodType.length))]; //for refactor all random fxn
@@ -96,7 +135,7 @@ function randomIndex(foodType) {
 
 function getRandomDish(foodTypeArray) {
   if (foodTypeArray !== "meal") {
-    var foodTypeArray = window[foodTypeArray];      //   turn sting into usable js
+    var foodTypeArray = window[foodTypeArray];
     return currentDish = randomIndex(foodTypeArray);
   } else {
     makeMeal();
@@ -121,6 +160,7 @@ function radioClear() {
 
 
 /*
-
-
+display new food with new recipe?
+dont add dupes?
+upper case first letter(s)?
 */
