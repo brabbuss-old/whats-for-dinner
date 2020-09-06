@@ -21,6 +21,8 @@ clearButton.addEventListener('click', clearContentRightBox => {
   unhideCookpot();
 })
 
+addRecipeButton.addEventListener('click', showAddRecipeBar());
+
 
 // Event Handlers
 function selectFoodType() {
@@ -87,6 +89,10 @@ function unhideClearButton() {
 
 function hideClearButton() {
   clearButton.classList.add("hidden")
+}
+
+function showAddRecipeBar() {
+  
 }
 
 // Non-Handler Functions

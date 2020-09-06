@@ -36,6 +36,22 @@
       </div>
     </main>
     <footer>
+      <div id="recipe-bar">
+        <form>
+          <label class="footer-text">Recipe Type:</label>
+          <input id="recipe-input-box" list="recipe-type" name="recipe-type" placeholder="Select...">
+
+          <label id="recipe-name" class="footer-text">Recipe Name:</label>
+          <input id="recipe-input-box" type="text" name="food-type" placeholder="Enter Recipe Name">
+          <button>ADD NEW</button>
+
+          <datalist id="recipe-type">
+            <option value="Side">
+            <option value="Main Dish">
+            <option value="Dessert">
+          </datalist>
+        </form>
+      </div>
     </footer>
   </body>
   <script src="data.js"></script>
