@@ -31,27 +31,34 @@
         <div id="display-dish-section">
         </div>
         <div>
+          <button id="find-recipes-button" class="hidden">FIND RECIPES!</button><br>
           <button id="clear-button" class="hidden">CLEAR</button><br>
         </div>
       </div>
     </main>
+      <!-- <form action="https://www.epicurious.com/search" class="searchform" method="get" name="searchform" target="">
+        <input name="sitesearch" type="hidden" >
+        <input autocomplete="on" class="form-control search" name="q" placeholder="Search in epicurious.com" required="required"  type="text">
+        <button class="button" type="submit">Search</button>
+      </form> -->
+      <!-- <iframe src="https://www.epicurious.com/recipes-menus/pantry-recipe-finder-article"></form>
+        <head>
+
+        </head>
+      </iframe> -->
     <footer>
       <div id="recipe-bar" class="hidden">
         <form id="recipe-form" class="hidden">
-
           <label class="footer-text">Recipe Type:</label>
-          <input id="add-recipe-type-input" class="recipe-input-box" list="recipe-type" name="recipe-type" placeholder="Select...">
-
+          <select id="add-recipe-type-input" class="recipe-input-box" name="recipe-type" placeholder="Select...">
+            <option>Select...
+            <option value="Side">Side
+            <option value="Main Dish">Main Dish
+            <option value="Dessert">Dessert
+          </select>
           <label id="recipe-name" class="footer-text">Recipe Name:</label>
           <input id="add-recipe-name-input" class="recipe-input-box" type="text" name="food-type" placeholder="Enter Recipe Name">
-
           <button id="add-new-button">ADD NEW</button>
-
-          <datalist id="recipe-type">
-            <option value="Side">
-            <option value="Main Dish">
-            <option value="Dessert">
-          </datalist>
         </form>
       </div>
     </footer>
