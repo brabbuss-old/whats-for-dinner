@@ -19,9 +19,11 @@ letsCookButton.addEventListener('click', letsCookDisplayContentRightBox => {
 clearButton.addEventListener('click', clearContentRightBox => {
   unDisplayDish();
   unhideCookpot();
-})
+});
 
-addRecipeButton.addEventListener('click', showAddRecipeBar());
+addRecipeButton.addEventListener('click', unHideAddRecipeBar => {
+  showAddRecipeBar();
+});
 
 
 // Event Handlers
@@ -92,7 +94,10 @@ function hideClearButton() {
 }
 
 function showAddRecipeBar() {
-  
+  let recipeBar = document.querySelector("#recipe-bar");
+  let form = document.querySelector("#recipe-form");
+  recipeBar.classList.remove("hidden");
+  form.classList.remove("hidden");
 }
 
 // Non-Handler Functions
