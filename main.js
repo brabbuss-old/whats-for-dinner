@@ -14,15 +14,6 @@ var loading = document.querySelector("#loading-animation");
 var radioSelection;
 
 // Event Listeners
-// radioButtons.addEventListener('change', makeLetsCookClickable => {
-//   for (const aRadioButton of radioButtons) {
-//     if (aRadioButton.checked) {
-//       letsCookButton.classList.add("ready");
-//       break
-//     }
-//   }
-//   letsCookButton.classList.add("ready");
-// })
 
 letsCookButton.addEventListener('click', letsCookDisplayContentRightBox => {
   selectFoodType();
@@ -64,16 +55,10 @@ closeRecipeBarButton.addEventListener('click', closeAddRecipeSection => {
 // Event Handlers
 
 function selectFoodType() {
-  // var radioSelection;         // why doesn't this work and become global?
-  // var radioButtons = document.querySelectorAll('input[name="food-type"]');
   let foodType;
-
   for (const aRadioButton of radioButtons) {
     if (aRadioButton.checked) {
-      // loadingAnimation();
       foodType = aRadioButton.value;
-      // hideCookpot();
-      // setTimeout(function() {}, 5000);
       getRandomDish(foodType);
       radioSelection = foodType;
       break
@@ -110,7 +95,7 @@ function displayDish() {
   if (currentDish.length > 45) {
     thisDish.classList.add("meal")
   } else {
-    thisDish.classList.remove("meal");          //for font size adjustment for longer meal string
+    thisDish.classList.remove("meal");   //for font size adjustment for longer meal string
     thisDish.classList.add("dish")
   }
 }
@@ -129,16 +114,16 @@ function unhideClearButton() {
   clearButton.classList.remove("hidden")
 }
 
+function hideClearButton() {
+  clearButton.classList.add("hidden")
+}
+
 function unhideFindRecipesButton() {
   findRecipesButton.classList.remove("hidden")
 }
 
 function hideFindRecipesButton() {
   findRecipesButton.classList.add("hidden")
-}
-
-function hideClearButton() {
-  clearButton.classList.add("hidden")
 }
 
 function showAddRecipeBar() {
@@ -159,20 +144,36 @@ function closeRecipeBar() {
   addRecipeButton.classList.remove("hidden");
 }
 
+function checkIfDuplicate() {
+  let recipeTypeJS = window[recipeType.value.toLowerCase().split(" ")[0]];  //converts from string to usable JS
+  let splitString = recipeName.value.toLowerCase().split(' ');
+  for (var i = 0; i < splitString.length; i++) {
+    splitString[i] = splitString[i].charAt(0).toUpperCase() + splitString[i].substring(1);
+  }
+  var recipeNameUpcase = splitString.join(' ');
+
+  if (recipeTypeJS.includes(recipeNameUpcase) === false) {
+    recipeTypeJS.push(recipeNameUpcase)
+  }
+
+  currentDish = recipeNameUpcase;
+}
+
 function saveNewRecipeData() {
-    if (recipeType.value !== "call-to-action" && recipeName.value !== "") {
-    // currentDish = recipeName.value;
-    let recipeTypeJS = window[recipeType.value.toLowerCase().split(" ")[0]];  //converts from string
-    inputNoLongerRequired();
-      if (recipeTypeJS.includes(recipeName.value) === false) {
-        var splitString = recipeName.value.toLowerCase().split(' ');
-        for (var i = 0; i < splitString.length; i++) {
-           splitString[i] = splitString[i].charAt(0).toUpperCase() + splitString[i].substring(1);
-        }
-        recipeNameUpcase = splitString.join(' ');
-        recipeTypeJS.push(recipeNameUpcase)
-        currentDish = recipeNameUpcase;
-      }
+  if (recipeType.value !== "call-to-action" && recipeName.value !== "") {
+    // let recipeTypeJS = window[recipeType.value.toLowerCase().split(" ")[0]];  //converts from string to usable JS
+    inputNoLongerRequired();  // clears CTA of empty fields
+    checkIfDuplicate();
+
+        // if (recipeTypeJS.includes(recipeName.value) === false) {    // prevent dupelications in data array
+    //   var splitString = recipeName.value.toLowerCase().split(' ');
+    //   for (var i = 0; i < splitString.length; i++) {
+    //      splitString[i] = splitString[i].charAt(0).toUpperCase() + splitString[i].substring(1);
+    //   }
+    //   recipeNameUpcase = splitString.join(' ');
+    //   recipeTypeJS.push(recipeNameUpcase)
+    //   currentDish = recipeNameUpcase;
+    // }
     displayCustomRecipe();
     inputClearFields();
     event.preventDefault();

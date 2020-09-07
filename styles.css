@@ -368,6 +368,6 @@ form > button {
 
 .hidden-footer {
   position: absolute !important;
-  top: -9999px !important;
+  bottom: -9999px !important;
   left: -9999px !important;
 }
