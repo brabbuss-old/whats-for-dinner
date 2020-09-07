@@ -7,6 +7,9 @@ grey - #95a5a6;
 red - #ee5253
 
 */
+button {
+  cursor: pointer;
+}
 
 html {
   font-family: 'Roboto', sans-serif;
@@ -99,6 +102,7 @@ html {
 #box-left {
   margin-inline-end: 134px;
 }
+
 #box-right {
   display: flex;
   flex-direction: column;
@@ -162,12 +166,25 @@ h5 {
 }
 
 /* RECIPE BAR */
+.slider-closed {
+	max-height: 0;
+}
+
+.slider {
+  overflow-y: hidden;
+	max-height: 84px; /* approximate max height */
+
+	transition-property: all;
+	transition-duration: .4s;
+	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+
 #recipe-bar {
   background-color: rgba(225, 225, 225, .9);
   position: fixed;
   bottom: 0;
   width: -webkit-fill-available;
-  padding: 42px;
+  height: 84px;
 }
 
 #recipe-bar > form {
@@ -195,8 +212,22 @@ form > button {
   border-radius: 5px;
 }
 
-.footer-text {
+#close-button-block {
+  display: flex;
+  position: fixed;
+  right: 10px;
+  bottom: 50px;
+  cursor: pointer;
+}
 
+#close-button {
+  display: flex;
+  justify-content: center;
+  font-size: 32px;
+  background-color: rgba(255, 196, 196, .6);
+  height: 40;
+  width: 40;
+  border-radius: 50%;
 }
 
 
