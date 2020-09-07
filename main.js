@@ -1,5 +1,7 @@
 // Globals
 var currentDish = ""
+var recipeType = document.querySelector("#add-recipe-type-input");
+var recipeName = document.querySelector("#add-recipe-name-input");
 
 // Buttons
 var addRecipeButton = document.querySelector('#add-recipe-button');
@@ -158,16 +160,19 @@ function closeRecipeBar() {
 }
 
 function saveNewRecipeData() {
-  let recipeType = document.querySelector("#add-recipe-type-input").value;
-  let recipeName = document.querySelector("#add-recipe-name-input").value;
+    if (recipeType.value !== "call-to-action" && recipeName.value !== "") {
+    currentDish = recipeName.value;
+    inputNoLongerRequired();
+    let recipeTypeJS = window[recipeType.value.toLowerCase().split(" ")[0]];  //converts from string
+    recipeTypeJS.push(recipeName.value)
+    displayCustomRecipe();
+    inputClearFields();
+    event.preventDefault();
+  } else {
+    inputRequired();
+    event.preventDefault();
+  }
 
-  recipeType.toLowerCase();  // lowcase to access data array
-
-  let recipeTypeJS = window[recipeType.toLowerCase().split(" ")[0]];  //converts from string
-
-  recipeTypeJS.push(recipeName)
-
-  event.preventDefault();
 }
 
 function findMeRecipes(string) {
@@ -209,18 +214,31 @@ function radioClear() {
   }
 }
 
-function dance() {
-  var moves = [
-    "rotatex(180deg)",
-    "scale(2, 2)",
-    "rotatey(180deg)",
-  ]
-
-  for (var i = 0; i < moves.length; i++) {
-    console.log(typeof(moves[i]));
-    setTimeout(() => {closeRecipeBarButton.style.transform += moves[i]}, 700)
+function inputClearFields() {
+  recipeType.value = "call-to-action"
+  recipeName.value = ""
+  for (const aRadioButton of radioButtons) {
+    aRadioButton.checked = false;
   }
 }
+
+function inputRequired() {
+recipeType.classList.add("input-required");
+recipeName.classList.add("input-required");
+}
+
+function inputNoLongerRequired() {
+recipeType.classList.remove("input-required");
+recipeName.classList.remove("input-required");
+}
+
+function displayCustomRecipe() {
+  unhideClearButton();
+  unhideFindRecipesButton();
+  console.log(currentDish);
+  displayDish();
+}
+
 
 // YOU WERE TRYING TO MAKE THE X DANCE
 
