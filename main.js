@@ -1,6 +1,7 @@
 // Globals
 var currentDish = ""
-
+var recipeType = document.querySelector("#add-recipe-type-input");
+var recipeName = document.querySelector("#add-recipe-name-input");
 // Buttons
 var addRecipeButton = document.querySelector('#add-recipe-button');
 var letsCookButton = document.querySelector('#lets-cook-button');
@@ -8,9 +9,21 @@ var clearButton = document.querySelector('#clear-button');
 var addNewButton = document.querySelector('#add-new-button');
 var findRecipesButton = document.querySelector('#find-recipes-button');
 var closeRecipeBarButton = document.querySelector('#close-button-block');
+var radioButtons = document.querySelectorAll('input[name="food-type"]');
+var loading = document.querySelector("#loading-animation");
 var radioSelection;
 
 // Event Listeners
+// radioButtons.addEventListener('change', makeLetsCookClickable => {
+//   for (const aRadioButton of radioButtons) {
+//     if (aRadioButton.checked) {
+//       letsCookButton.classList.add("ready");
+//       break
+//     }
+//   }
+//   letsCookButton.classList.add("ready");
+// })
+
 letsCookButton.addEventListener('click', letsCookDisplayContentRightBox => {
   selectFoodType();
   if (radioSelection !== false && radioSelection !== "meal") {
@@ -29,8 +42,10 @@ clearButton.addEventListener('click', clearContentRightBox => {
   unhideCookpot();
 });
 
-addRecipeButton.addEventListener('click', unHideAddRecipeBar => {
+addRecipeButton.addEventListener('click', unHideAddRecipeBarHideButton => {
+  addRecipeButton.classList.add("hidden");
   showAddRecipeBar();
+  setTimeout(() => {closeRecipeBarButton.classList.add("get-big")} , 700);
 });
 
 addNewButton.addEventListener('click', addNewRecipe => {
@@ -42,19 +57,23 @@ findRecipesButton.addEventListener('click', findRecipes => {
 })
 
 closeRecipeBarButton.addEventListener('click', closeAddRecipeSection => {
-  closeRecipeBar();
+  closeRecipeBarButton.classList.remove("get-big");
+  setTimeout(() => {closeRecipeBar()}, 150)
 })
 
 // Event Handlers
+
 function selectFoodType() {
   // var radioSelection;         // why doesn't this work and become global?
-  let radioButtons = document.querySelectorAll('input[name="food-type"]');
+  // var radioButtons = document.querySelectorAll('input[name="food-type"]');
   let foodType;
 
   for (const aRadioButton of radioButtons) {
     if (aRadioButton.checked) {
+      // loadingAnimation();
       foodType = aRadioButton.value;
-      hideCookpot();
+      // hideCookpot();
+      // setTimeout(function() {}, 5000);
       getRandomDish(foodType);
       radioSelection = foodType;
       break
@@ -76,6 +95,7 @@ function unhideCookpot() {
 }
 
 function displayDish() {
+  hideCookpot();
   let boxRight = document.querySelector("#display-dish-section");
   let dishBlock =
    `
@@ -136,19 +156,30 @@ function closeRecipeBar() {
   recipeBar.classList.add("hidden");
   closeRecipeBarButton.classList.add("hidden");
   form.classList.add("hidden");
+  addRecipeButton.classList.remove("hidden");
 }
 
 function saveNewRecipeData() {
-  let recipeType = document.querySelector("#add-recipe-type-input").value;
-  let recipeName = document.querySelector("#add-recipe-name-input").value;
-
-  recipeType.toLowerCase();  // lowcase to access data array
-
-  let recipeTypeJS = window[recipeType.toLowerCase().split(" ")[0]];  //converts from string
-
-  recipeTypeJS.push(recipeName)
-
-  event.preventDefault();
+    if (recipeType.value !== "call-to-action" && recipeName.value !== "") {
+    // currentDish = recipeName.value;
+    let recipeTypeJS = window[recipeType.value.toLowerCase().split(" ")[0]];  //converts from string
+    inputNoLongerRequired();
+      if (recipeTypeJS.includes(recipeName.value) === false) {
+        var splitString = recipeName.value.toLowerCase().split(' ');
+        for (var i = 0; i < splitString.length; i++) {
+           splitString[i] = splitString[i].charAt(0).toUpperCase() + splitString[i].substring(1);
+        }
+        recipeNameUpcase = splitString.join(' ');
+        recipeTypeJS.push(recipeNameUpcase)
+        currentDish = recipeNameUpcase;
+      }
+    displayCustomRecipe();
+    inputClearFields();
+    event.preventDefault();
+  } else {
+    inputRequired();
+    event.preventDefault();
+  }
 }
 
 function findMeRecipes(string) {
@@ -156,6 +187,11 @@ function findMeRecipes(string) {
 }
 
 // Non-Handler Functions
+function loadingAnimation() {
+  loading.classList.remove("hidden");
+  setTimeout(function() {loading.classList.add("hidden")}, 5000);
+}
+
 function randomIndex(foodType) {
   return foodType[Math.floor(Math.random() * (foodType.length))]; //for refactor all random fxn
 }
@@ -185,14 +221,29 @@ function radioClear() {
   }
 }
 
+function inputClearFields() {
+  recipeType.value = "call-to-action"
+  recipeName.value = ""
+  for (const aRadioButton of radioButtons) {
+    aRadioButton.checked = false;
+  }
+}
 
-/*
-display new food with new recipe?
-dont add dupes?
-upper case first letter(s)?
-clear fiel after added
-explore by ingredient on epicurious
-pop search results based on decision (scope some recipes)
+function inputRequired() {
+recipeType.classList.add("input-required");
+recipeName.classList.add("input-required", "input-required::placeholder");
+}
 
-fancy radio buttons css
-*/
+function inputNoLongerRequired() {
+recipeName.classList.remove("input-required", "input-required::placeholder");
+recipeType.classList.remove("input-required");
+
+}
+
+function displayCustomRecipe() {
+
+  unhideClearButton();
+  unhideFindRecipesButton();
+  console.log(currentDish);
+  displayDish();
+}

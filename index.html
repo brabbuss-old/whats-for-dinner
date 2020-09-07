@@ -25,14 +25,32 @@
         </form>
       </div>
       <div class="box" id="box-right">
+        <div id="loading-animation" class="hidden">
+          <div class="center">
+            <span>🍗 </span>
+            <span>F</span>
+            <span>I</span>
+            <span>N</span>
+            <span>D</span>
+            <span>I</span>
+            <span>N</span>
+            <span>G</span>
+            <span>.</span>
+            <span>F</span>
+            <span>O</span>
+            <span>O</span>
+            <span>D</span>
+            <span>🌯</span>
+          </div>
+        </div>
         <div>
           <img src="./assets/cookpot.svg" alt="Cookpot" id="cookpot">
         </div>
         <div id="display-dish-section">
         </div>
         <div>
-          <button id="find-recipes-button" class="hidden">FIND RECIPES!</button><br>
-          <button id="clear-button" class="hidden">CLEAR</button><br>
+          <button id="find-recipes-button" class="hidden add-recipe-inputs">FIND RECIPES!</button><br>
+          <button id="clear-button" class="hidden add-recipe-inputs">CLEAR</button><br>
         </div>
       </div>
     </main>
@@ -51,13 +69,13 @@
         <form id="recipe-form" class="slider hidden">
           <label class="footer-text">Recipe Type:</label>
           <select id="add-recipe-type-input" class="recipe-input-box" name="recipe-type" placeholder="Select...">
-            <option>Select...
+            <option value="call-to-action">Select...
             <option value="Side">Side
             <option value="Main Dish">Main Dish
             <option value="Dessert">Dessert
           </select>
           <label id="recipe-name" class="footer-text">Recipe Name:</label>
-          <input id="add-recipe-name-input" class="recipe-input-box" type="text" name="food-type" placeholder="Enter Recipe Name">
+          <input id="add-recipe-name-input" class="recipe-input-box" type="text" name="food-name" placeholder="Enter Recipe Name">
           <button id="add-new-button">ADD NEW</button>
           <!-- <div id="close-button-block">
             <p id="close-button">X</p>

@@ -7,8 +7,19 @@ grey - #95a5a6;
 red - #ee5253
 
 */
-button {
+button, input {
   cursor: pointer;
+  transition: all .2s ease-in-out;
+}
+
+.radio:hover {
+  transform: scale(1.5);
+}
+
+button:hover {
+  transform: scale(1.2);
+  background-color: salmon;
+  color: white;
 }
 
 html {
@@ -32,10 +43,12 @@ html {
   justify-content: space-between;
   display: flex;
   width: 100%;
+  position: fixed;
 }
 
 .header-text {
   padding-left: 30px;
+  color: white;
 }
 
 #add-recipe-button {
@@ -52,6 +65,7 @@ html {
 .wrapper {
   display: flex;
   justify-content: center;
+  background-position: initial;
 }
 
 .wrapper > .box {
@@ -59,7 +73,8 @@ html {
   min-width: 520px;
   background-color: rgba(225, 225, 225, .9);
   margin: 50px;
-  position: relative;
+  position: fixed;
+  top: 100px;
 }
 
 .box-title {
@@ -89,6 +104,11 @@ html {
   font-size: 19px;
 }
 
+#lets-cook-button:hover {
+  background-color: salmon;
+  color: white;
+}
+
 #lets-cook-button {
   border: none;
   background-color: #3AB9B2;
@@ -96,14 +116,19 @@ html {
   margin-left: 50px;
   padding: 10px 55px;
   border-radius: 5px;
+  position: absolute;
+  bottom: 24px;
 }
 
 /* Box Right Contents */
 #box-left {
-  margin-inline-end: 134px;
+  right: 54%;
+  left: 67px;
 }
 
 #box-right {
+  right: 67px;
+  left: 54%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -150,7 +175,12 @@ h5 {
   position: absolute;
   padding: 10px 17px;
   top: 85%;
-  left: 5%;
+  left: 10%;
+}
+
+#find-recipes-button:hover {
+  background-color: salmon;
+  color: white;
 }
 
 #clear-button {
@@ -162,7 +192,12 @@ h5 {
   position: absolute;
   padding: 10px 17px;
   top: 85%;
-  left: 80%;
+  left: 74%;
+}
+
+#clear-button:hover {
+  background-color: salmon;
+  color: white;
 }
 
 /* RECIPE BAR */
@@ -189,9 +224,11 @@ h5 {
 
 #recipe-bar > form {
   position: fixed;
-  left: 5px;
+  left: 20px;
   font-size: 20px;
-  bottom: 2px;
+  bottom: 0px;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
 .recipe-input-box {
@@ -215,28 +252,118 @@ form > button {
 #close-button-block {
   display: flex;
   position: fixed;
-  right: 10px;
+  right: 30px;
   bottom: 50px;
-  cursor: pointer;
+  padding: 10px;
+}
+
+#close-button:hover {
+  transform: scale(1.5, 1.5);
 }
 
 #close-button {
   display: flex;
   justify-content: center;
   font-size: 32px;
-  background-color: rgba(255, 196, 196, .6);
+  background-color: rgba(255, 196, 196);
   height: 40;
   width: 40;
   border-radius: 50%;
+  transition: all .2s ease-in-out;
+  margin: 0;
+  cursor: pointer;
 }
 
 
 /* Other Styling */
 
+.get-big {
+  transform: scale(2, 2);
+}
+
+.input-required {
+  background-color: red;
+  color: white;
+  }
+
+.input-required::placeholder {
+  color: white;
+}
+
+.ready {
+  background-color: #3AB9B2;
+}
+
 .hidden {
   position: absolute !important;
   top: -9999px !important;
   left: -9999px !important;
+}
+
+/* LOADING ANIMATION */
+
+/* body {
+  background-color: black;
+  margin: 0;
+  padding: 0;
+} */
+.center {
+  display: flex;
+  font-size: 10;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%,-50%)
+}
+.center span {
+  color:white;
+  animation:animate 2s ease infinite alternate;
+}
+.center span:nth-child(1) {
+  animation-delay:.25s;
+}
+.center span:nth-child(2) {
+  animation-delay:.5s;
+}
+.center span:nth-child(3) {
+  animation-delay:.75s;
+}
+.center span:nth-child(4) {
+  animation-delay:1s;
+}
+.center span:nth-child(5) {
+  animation-delay:1.25s;
+}
+.center span:nth-child(6) {
+  animation-delay:1.5s;
+}
+.center span:nth-child(7) {
+  animation-delay:1.75s;
+}
+.center span:nth-child(8) {
+  animation-delay:2s;
+}
+.center span:nth-child(9) {
+  animation-delay:.25s;
+}
+.center span:nth-child(10) {
+  animation-delay:.5s;
+}
+.center span:nth-child(11) {
+  animation-delay:.75s;
+}
+.center span:nth-child(12) {
+  animation-delay:1s;
+}
+.center span:nth-child(13) {
+  animation-delay:1.25s;
+}
+.center span:nth-child(14) {
+  animation-delay:1.5s;
+}
+@keyframes animate {
+  from{font-size:1em}
+  to{font-size:3em}
 }
 
 .hidden-footer {
