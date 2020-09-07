@@ -7,6 +7,7 @@ var letsCookButton = document.querySelector('#lets-cook-button');
 var clearButton = document.querySelector('#clear-button');
 var addNewButton = document.querySelector('#add-new-button');
 var findRecipesButton = document.querySelector('#find-recipes-button');
+var closeRecipeBarButton = document.querySelector('#close-button-block');
 var radioSelection;
 
 // Event Listeners
@@ -38,6 +39,10 @@ addNewButton.addEventListener('click', addNewRecipe => {
 
 findRecipesButton.addEventListener('click', findRecipes => {
   findMeRecipes();
+})
+
+closeRecipeBarButton.addEventListener('click', closeAddRecipeSection => {
+  closeRecipeBar();
 })
 
 // Event Handlers
@@ -120,7 +125,17 @@ function showAddRecipeBar() {
   let recipeBar = document.querySelector("#recipe-bar");
   let form = document.querySelector("#recipe-form");
   recipeBar.classList.remove("hidden");
+  closeRecipeBarButton.classList.remove("hidden");
   form.classList.remove("hidden");
+  // form.classList.add("slider");
+}
+
+function closeRecipeBar() {
+  let recipeBar = document.querySelector("#recipe-bar");
+  let form = document.querySelector("#recipe-form");
+  recipeBar.classList.add("hidden");
+  closeRecipeBarButton.classList.add("hidden");
+  form.classList.add("hidden");
 }
 
 function saveNewRecipeData() {

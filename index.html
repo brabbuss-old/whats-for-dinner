@@ -47,8 +47,8 @@
         </head>
       </iframe> -->
     <footer>
-      <div id="recipe-bar" class="hidden">
-        <form id="recipe-form" class="hidden">
+      <div id="recipe-bar" class="slider hidden">
+        <form id="recipe-form" class="slider hidden">
           <label class="footer-text">Recipe Type:</label>
           <select id="add-recipe-type-input" class="recipe-input-box" name="recipe-type" placeholder="Select...">
             <option>Select...
@@ -59,7 +59,13 @@
           <label id="recipe-name" class="footer-text">Recipe Name:</label>
           <input id="add-recipe-name-input" class="recipe-input-box" type="text" name="food-type" placeholder="Enter Recipe Name">
           <button id="add-new-button">ADD NEW</button>
+          <!-- <div id="close-button-block">
+            <p id="close-button">X</p>
+          </div> -->
         </form>
+        <div id="close-button-block" class="hidden slider">
+          <p id="close-button">X</p>
+        </div>
       </div>
     </footer>
   </body>
