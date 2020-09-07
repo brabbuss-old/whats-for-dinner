@@ -277,8 +277,17 @@ form > button {
 
 /* Other Styling */
 
+.get-big {
+  transform: scale(2, 2);
+}
+
 .input-required {
   background-color: red;
+  color: white;
+  }
+
+.input-required::placeholder {
+  color: white;
 }
 
 .ready {

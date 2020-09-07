@@ -2,7 +2,6 @@
 var currentDish = ""
 var recipeType = document.querySelector("#add-recipe-type-input");
 var recipeName = document.querySelector("#add-recipe-name-input");
-
 // Buttons
 var addRecipeButton = document.querySelector('#add-recipe-button');
 var letsCookButton = document.querySelector('#lets-cook-button');
@@ -46,7 +45,7 @@ clearButton.addEventListener('click', clearContentRightBox => {
 addRecipeButton.addEventListener('click', unHideAddRecipeBarHideButton => {
   addRecipeButton.classList.add("hidden");
   showAddRecipeBar();
-  setTimeout(() => {closeRecipeBarButton.style.transform = "scale(2, 2)"} , 700);
+  setTimeout(() => {closeRecipeBarButton.classList.add("get-big")} , 700);
 });
 
 addNewButton.addEventListener('click', addNewRecipe => {
@@ -58,7 +57,7 @@ findRecipesButton.addEventListener('click', findRecipes => {
 })
 
 closeRecipeBarButton.addEventListener('click', closeAddRecipeSection => {
-  closeRecipeBarButton.style.transform = "scale(sx, sy)";
+  closeRecipeBarButton.classList.remove("get-big");
   setTimeout(() => {closeRecipeBar()}, 150)
 })
 
@@ -160,29 +159,19 @@ function closeRecipeBar() {
   addRecipeButton.classList.remove("hidden");
 }
 
-// function saveNewRecipeData() {
-//     if (recipeType.value !== "call-to-action" && recipeName.value !== "") {
-//     currentDish = recipeName.value;
-//     inputNoLongerRequired();
-//     let recipeTypeJS = window[recipeType.value.toLowerCase().split(" ")[0]];  //converts from string
-//     recipeTypeJS.push(recipeName.value)
-//     displayCustomRecipe();
-//     inputClearFields();
-//     event.preventDefault();
-//   } else {
-//     inputRequired();
-//     event.preventDefault();
-//   }
-//
-// }
-
 function saveNewRecipeData() {
     if (recipeType.value !== "call-to-action" && recipeName.value !== "") {
-    currentDish = recipeName.value;
+    // currentDish = recipeName.value;
     let recipeTypeJS = window[recipeType.value.toLowerCase().split(" ")[0]];  //converts from string
     inputNoLongerRequired();
-      if (recipeTypeJS.includes(currentDish) === false) {
-        recipeTypeJS.push(recipeName.value)
+      if (recipeTypeJS.includes(recipeName.value) === false) {
+        var splitString = recipeName.value.toLowerCase().split(' ');
+        for (var i = 0; i < splitString.length; i++) {
+           splitString[i] = splitString[i].charAt(0).toUpperCase() + splitString[i].substring(1);
+        }
+        recipeNameUpcase = splitString.join(' ');
+        recipeTypeJS.push(recipeNameUpcase)
+        currentDish = recipeNameUpcase;
       }
     displayCustomRecipe();
     inputClearFields();
@@ -242,12 +231,13 @@ function inputClearFields() {
 
 function inputRequired() {
 recipeType.classList.add("input-required");
-recipeName.classList.add("input-required");
+recipeName.classList.add("input-required", "input-required::placeholder");
 }
 
 function inputNoLongerRequired() {
+recipeName.classList.remove("input-required", "input-required::placeholder");
 recipeType.classList.remove("input-required");
-recipeName.classList.remove("input-required");
+
 }
 
 function displayCustomRecipe() {
@@ -257,17 +247,3 @@ function displayCustomRecipe() {
   console.log(currentDish);
   displayDish();
 }
-
-
-// YOU WERE TRYING TO MAKE THE X DANCE
-
-/*
-display new food with new recipe?
-dont add dupes?
-upper case first letter(s)?
-clear fiel after added
-explore by ingredient on epicurious
-pop search results based on decision (scope some recipes)
-
-fancy radio buttons css
-*/
