@@ -8,9 +8,21 @@ var clearButton = document.querySelector('#clear-button');
 var addNewButton = document.querySelector('#add-new-button');
 var findRecipesButton = document.querySelector('#find-recipes-button');
 var closeRecipeBarButton = document.querySelector('#close-button-block');
+var radioButtons = document.querySelectorAll('input[name="food-type"]');
+var loading = document.querySelector("#loading-animation");
 var radioSelection;
 
 // Event Listeners
+// radioButtons.addEventListener('change', makeLetsCookClickable => {
+//   for (const aRadioButton of radioButtons) {
+//     if (aRadioButton.checked) {
+//       letsCookButton.classList.add("ready");
+//       break
+//     }
+//   }
+//   letsCookButton.classList.add("ready");
+// })
+
 letsCookButton.addEventListener('click', letsCookDisplayContentRightBox => {
   selectFoodType();
   if (radioSelection !== false && radioSelection !== "meal") {
@@ -29,8 +41,10 @@ clearButton.addEventListener('click', clearContentRightBox => {
   unhideCookpot();
 });
 
-addRecipeButton.addEventListener('click', unHideAddRecipeBar => {
+addRecipeButton.addEventListener('click', unHideAddRecipeBarHideButton => {
+  addRecipeButton.classList.add("hidden");
   showAddRecipeBar();
+  setTimeout(() => {closeRecipeBarButton.style.transform = "scale(2, 2)"} , 700);
 });
 
 addNewButton.addEventListener('click', addNewRecipe => {
@@ -42,19 +56,23 @@ findRecipesButton.addEventListener('click', findRecipes => {
 })
 
 closeRecipeBarButton.addEventListener('click', closeAddRecipeSection => {
-  closeRecipeBar();
+  closeRecipeBarButton.style.transform = "scale(sx, sy)";
+  setTimeout(() => {closeRecipeBar()}, 150)
 })
 
 // Event Handlers
+
 function selectFoodType() {
   // var radioSelection;         // why doesn't this work and become global?
-  let radioButtons = document.querySelectorAll('input[name="food-type"]');
+  // var radioButtons = document.querySelectorAll('input[name="food-type"]');
   let foodType;
 
   for (const aRadioButton of radioButtons) {
     if (aRadioButton.checked) {
+      // loadingAnimation();
       foodType = aRadioButton.value;
       hideCookpot();
+      // setTimeout(function() {}, 5000);
       getRandomDish(foodType);
       radioSelection = foodType;
       break
@@ -136,6 +154,7 @@ function closeRecipeBar() {
   recipeBar.classList.add("hidden");
   closeRecipeBarButton.classList.add("hidden");
   form.classList.add("hidden");
+  addRecipeButton.classList.remove("hidden");
 }
 
 function saveNewRecipeData() {
@@ -156,6 +175,11 @@ function findMeRecipes(string) {
 }
 
 // Non-Handler Functions
+function loadingAnimation() {
+  loading.classList.remove("hidden");
+  setTimeout(function() {loading.classList.add("hidden")}, 5000);
+}
+
 function randomIndex(foodType) {
   return foodType[Math.floor(Math.random() * (foodType.length))]; //for refactor all random fxn
 }
@@ -185,6 +209,20 @@ function radioClear() {
   }
 }
 
+function dance() {
+  var moves = [
+    "rotatex(180deg)",
+    "scale(2, 2)",
+    "rotatey(180deg)",
+  ]
+
+  for (var i = 0; i < moves.length; i++) {
+    console.log(typeof(moves[i]));
+    setTimeout(() => {closeRecipeBarButton.style.transform += moves[i]}, 700)
+  }
+}
+
+// YOU WERE TRYING TO MAKE THE X DANCE
 
 /*
 display new food with new recipe?
