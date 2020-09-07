@@ -73,7 +73,7 @@ function selectFoodType() {
     if (aRadioButton.checked) {
       // loadingAnimation();
       foodType = aRadioButton.value;
-      hideCookpot();
+      // hideCookpot();
       // setTimeout(function() {}, 5000);
       getRandomDish(foodType);
       radioSelection = foodType;
@@ -96,6 +96,7 @@ function unhideCookpot() {
 }
 
 function displayDish() {
+  hideCookpot();
   let boxRight = document.querySelector("#display-dish-section");
   let dishBlock =
    `
@@ -159,12 +160,30 @@ function closeRecipeBar() {
   addRecipeButton.classList.remove("hidden");
 }
 
+// function saveNewRecipeData() {
+//     if (recipeType.value !== "call-to-action" && recipeName.value !== "") {
+//     currentDish = recipeName.value;
+//     inputNoLongerRequired();
+//     let recipeTypeJS = window[recipeType.value.toLowerCase().split(" ")[0]];  //converts from string
+//     recipeTypeJS.push(recipeName.value)
+//     displayCustomRecipe();
+//     inputClearFields();
+//     event.preventDefault();
+//   } else {
+//     inputRequired();
+//     event.preventDefault();
+//   }
+//
+// }
+
 function saveNewRecipeData() {
     if (recipeType.value !== "call-to-action" && recipeName.value !== "") {
     currentDish = recipeName.value;
-    inputNoLongerRequired();
     let recipeTypeJS = window[recipeType.value.toLowerCase().split(" ")[0]];  //converts from string
-    recipeTypeJS.push(recipeName.value)
+    inputNoLongerRequired();
+      if (recipeTypeJS.includes(currentDish) === false) {
+        recipeTypeJS.push(recipeName.value)
+      }
     displayCustomRecipe();
     inputClearFields();
     event.preventDefault();
@@ -172,7 +191,6 @@ function saveNewRecipeData() {
     inputRequired();
     event.preventDefault();
   }
-
 }
 
 function findMeRecipes(string) {
@@ -233,6 +251,7 @@ recipeName.classList.remove("input-required");
 }
 
 function displayCustomRecipe() {
+
   unhideClearButton();
   unhideFindRecipesButton();
   console.log(currentDish);
