@@ -119,6 +119,9 @@ function displayDish() {
 
 function unDisplayDish() {
   var element = document.getElementById("display-dish-section");
+  while (element.firstChild) {                // like a dynamically updated real-time for loop
+    element.removeChild(element.firstChild);
+  }
   radioClear();
   hideClearButton();
   hideFindRecipesButton();
