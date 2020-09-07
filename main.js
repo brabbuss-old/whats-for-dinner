@@ -1,7 +1,11 @@
 // Globals
-var currentDish = ""
 var recipeType = document.querySelector("#add-recipe-type-input");
 var recipeName = document.querySelector("#add-recipe-name-input");
+var radioSelection;
+var searchTerm = "";
+var currentDish = ""
+var wholeMeal = {}
+
 // Buttons
 var addRecipeButton = document.querySelector('#add-recipe-button');
 var letsCookButton = document.querySelector('#lets-cook-button');
@@ -10,8 +14,9 @@ var addNewButton = document.querySelector('#add-new-button');
 var findRecipesButton = document.querySelector('#find-recipes-button');
 var closeRecipeBarButton = document.querySelector('#close-button-block');
 var radioButtons = document.querySelectorAll('input[name="food-type"]');
-var loading = document.querySelector("#loading-animation");
-var radioSelection;
+var mealSideButton = document.querySelector("#meal-side-name");
+var mealMainButton = document.querySelector("#meal-main-name");
+var mealDessertButton = document.querySelector("#meal-dessert-name");
 
 // Event Listeners
 
@@ -31,6 +36,7 @@ letsCookButton.addEventListener('click', letsCookDisplayContentRightBox => {
 clearButton.addEventListener('click', clearContentRightBox => {
   unDisplayDish();
   unhideCookpot();
+  hideMealButtons();
 });
 
 addRecipeButton.addEventListener('click', unHideAddRecipeBarHideButton => {
@@ -52,7 +58,17 @@ closeRecipeBarButton.addEventListener('click', closeAddRecipeSection => {
   setTimeout(() => {closeRecipeBar()}, 150)
 })
 
-// Event Handlers
+mealSideButton.addEventListener('click', mealRecipe => {
+  searchMealRecipes("side")
+});
+mealMainButton.addEventListener('click', mealRecipe => {
+  searchMealRecipes("main")
+});
+mealDessertButton.addEventListener('click', mealRecipe => {
+  searchMealRecipes("dessert")
+});
+
+// Direct Event Handlers
 
 function selectFoodType() {
   let foodType;
@@ -88,23 +104,21 @@ function displayDish() {
     <p id="this-dish">${currentDish}</p><br>
     `
     boxRight.innerHTML = dishBlock;
-    // boxRight.insertAdjacentHTML("afterbegin", dishBlock);
 
   let thisDish = document.querySelector("#this-dish");
 
   if (currentDish.length > 45) {
-    thisDish.classList.add("meal")
+    thisDish.classList.add("meal");
+    unhideMealButtons();
   } else {
     thisDish.classList.remove("meal");   //for font size adjustment for longer meal string
-    thisDish.classList.add("dish")
+    thisDish.classList.add("dish");
+    hideMealButtons();
   }
 }
 
 function unDisplayDish() {
   var element = document.getElementById("display-dish-section");
-  while (element.firstChild) {                // like a dynamically updated real-time for loop
-    element.removeChild(element.firstChild);
-  }
   radioClear();
   hideClearButton();
   hideFindRecipesButton();
@@ -124,6 +138,14 @@ function unhideFindRecipesButton() {
 
 function hideFindRecipesButton() {
   findRecipesButton.classList.add("hidden")
+}
+
+function unhideMealButtons() {
+  document.querySelector("#meal-buttons-section").classList.remove("hidden")
+}
+
+function hideMealButtons() {
+  document.querySelector("#meal-buttons-section").classList.add("hidden")
 }
 
 function showAddRecipeBar() {
@@ -164,16 +186,6 @@ function saveNewRecipeData() {
     // let recipeTypeJS = window[recipeType.value.toLowerCase().split(" ")[0]];  //converts from string to usable JS
     inputNoLongerRequired();  // clears CTA of empty fields
     checkIfDuplicate();
-
-        // if (recipeTypeJS.includes(recipeName.value) === false) {    // prevent dupelications in data array
-    //   var splitString = recipeName.value.toLowerCase().split(' ');
-    //   for (var i = 0; i < splitString.length; i++) {
-    //      splitString[i] = splitString[i].charAt(0).toUpperCase() + splitString[i].substring(1);
-    //   }
-    //   recipeNameUpcase = splitString.join(' ');
-    //   recipeTypeJS.push(recipeNameUpcase)
-    //   currentDish = recipeNameUpcase;
-    // }
     displayCustomRecipe();
     inputClearFields();
     event.preventDefault();
@@ -183,11 +195,25 @@ function saveNewRecipeData() {
   }
 }
 
-function findMeRecipes(string) {
+function findMeRecipes() {
   window.open(`https://www.allrecipes.com/search/?sitesearch=&wt=${currentDish}`)
 }
 
-// Non-Handler Functions
+function searchMealRecipes(type) {
+  if (type === "side") {
+    console.log(searchTerm);
+    searchTerm = wholeMeal.side
+  } else if (type === "main") {
+    searchTerm = wholeMeal.main
+  } else {
+    searchTerm = wholeMeal.dessert
+  }
+  console.log(searchTerm);
+  window.open(`https://www.allrecipes.com/search/?sitesearch=&wt=${searchTerm}`)
+}
+
+// Additional Functions
+
 function loadingAnimation() {
   loading.classList.remove("hidden");
   setTimeout(function() {loading.classList.add("hidden")}, 5000);
@@ -210,7 +236,10 @@ function makeMeal() {
   var mealSide = randomIndex(side);
   var mealMain = randomIndex(main);
   var mealDessert = randomIndex(dessert);
-  var wholeMeal = {Side: mealSide, Main: mealMain, Dessert: mealDessert};   //  just in case
+  wholeMeal = {side: mealSide, main: mealMain, dessert: mealDessert};   //  just in case
+  mealSideButton.innerText = `${wholeMeal.side}`;
+  mealMainButton.innerText = `${wholeMeal.main}`;
+  mealDessertButton.innerText = `${wholeMeal.dessert}`;
   console.log(wholeMeal);      // log for code check
   return currentDish = `${mealMain} with a side of ${mealSide} and ${mealDessert} for dessert!`
 }
@@ -238,7 +267,6 @@ recipeName.classList.add("input-required", "input-required::placeholder");
 function inputNoLongerRequired() {
 recipeName.classList.remove("input-required", "input-required::placeholder");
 recipeType.classList.remove("input-required");
-
 }
 
 function displayCustomRecipe() {

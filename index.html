@@ -25,45 +25,23 @@
         </form>
       </div>
       <div class="box" id="box-right">
-        <!-- <div id="loading-animation" class="hidden">
-          <div class="center">
-            <span>🍗 </span>
-            <span>F</span>
-            <span>I</span>
-            <span>N</span>
-            <span>D</span>
-            <span>I</span>
-            <span>N</span>
-            <span>G</span>
-            <span>.</span>
-            <span>F</span>
-            <span>O</span>
-            <span>O</span>
-            <span>D</span>
-            <span>🌯</span>
-          </div>
-        </div> -->
         <div>
           <img src="./assets/cookpot.svg" alt="Cookpot" id="cookpot">
         </div>
         <div id="display-dish-section">
         </div>
-        <div>
+        <div id="meal-wrapper">
+          <div id="meal-buttons-section" class="meal-buttons hidden">
+            <h6 class="">Find Recipes for Your Meal!</h6>
+            <button id="meal-side-name"></button>
+            <button id="meal-main-name"></button>
+            <button id="meal-dessert-name"></button>
+          </div>
           <button id="find-recipes-button" class="hidden add-recipe-inputs">FIND RECIPES!</button><br>
           <button id="clear-button" class="hidden add-recipe-inputs">CLEAR</button><br>
         </div>
       </div>
     </main>
-      <!-- <form action="https://www.epicurious.com/search" class="searchform" method="get" name="searchform" target="">
-        <input name="sitesearch" type="hidden" >
-        <input autocomplete="on" class="form-control search" name="q" placeholder="Search in epicurious.com" required="required"  type="text">
-        <button class="button" type="submit">Search</button>
-      </form> -->
-      <!-- <iframe src="https://www.epicurious.com/recipes-menus/pantry-recipe-finder-article"></form>
-        <head>
-
-        </head>
-      </iframe> -->
     <footer>
       <div id="recipe-bar" class="slider hidden">
         <form id="recipe-form" class="slider hidden">
@@ -77,9 +55,6 @@
           <label id="recipe-name" class="footer-text">Recipe Name:</label>
           <input id="add-recipe-name-input" class="recipe-input-box" type="text" name="food-name" placeholder="Enter Recipe Name">
           <button id="add-new-button">ADD NEW</button>
-          <!-- <div id="close-button-block">
-            <p id="close-button">X</p>
-          </div> -->
         </form>
         <div id="close-button-block" class="hidden slider">
           <p id="close-button">X</p>

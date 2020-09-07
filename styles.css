@@ -57,7 +57,6 @@ html {
   padding-right: 10px;
   margin: 15px;
   border-radius: 5px;
-  /* background-color: #95a5a6; */
 }
 
 /* Body Boxes*/
@@ -83,12 +82,6 @@ html {
 }
 
 /* Box Left Contents */
-
-/* .form {
-  margin-left: 50px;
-  margin-bottom: 30px;
-  list-style-type: square;
-} */
 
 .asterisk {
   color: red;
@@ -135,11 +128,41 @@ html {
   align-content: center;
 }
 
-h5 {
+h5, h6 {
   font-style: italic;
   font-size: 19px;
   text-align: center;
   margin-bottom: 0px;
+}
+
+#meal-wrapper {
+  display: inline-block;
+}
+
+#meal-buttons-section {
+  text-align: center;
+  bottom: 38px;
+  position: relative;
+}
+
+#meal-buttons-section > button:hover {
+  background-color: salmon;
+  color: white;
+  transform: scale(1.07)
+}
+
+#meal-buttons-section > button {
+  background-color: cornflowerblue;
+  font-size: 15px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  justify-content: space-between;
+  padding: 10px 17px;
+}
+
+#meal-buttons-section > h6 {
+  padding-bottom: 5px;
 }
 
 .dish {
@@ -298,72 +321,6 @@ form > button {
   position: absolute !important;
   top: -9999px !important;
   left: -9999px !important;
-}
-
-/* LOADING ANIMATION */
-
-/* body {
-  background-color: black;
-  margin: 0;
-  padding: 0;
-} */
-.center {
-  display: flex;
-  font-size: 10;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform:translate(-50%,-50%)
-}
-.center span {
-  color:white;
-  animation:animate 2s ease infinite alternate;
-}
-.center span:nth-child(1) {
-  animation-delay:.25s;
-}
-.center span:nth-child(2) {
-  animation-delay:.5s;
-}
-.center span:nth-child(3) {
-  animation-delay:.75s;
-}
-.center span:nth-child(4) {
-  animation-delay:1s;
-}
-.center span:nth-child(5) {
-  animation-delay:1.25s;
-}
-.center span:nth-child(6) {
-  animation-delay:1.5s;
-}
-.center span:nth-child(7) {
-  animation-delay:1.75s;
-}
-.center span:nth-child(8) {
-  animation-delay:2s;
-}
-.center span:nth-child(9) {
-  animation-delay:.25s;
-}
-.center span:nth-child(10) {
-  animation-delay:.5s;
-}
-.center span:nth-child(11) {
-  animation-delay:.75s;
-}
-.center span:nth-child(12) {
-  animation-delay:1s;
-}
-.center span:nth-child(13) {
-  animation-delay:1.25s;
-}
-.center span:nth-child(14) {
-  animation-delay:1.5s;
-}
-@keyframes animate {
-  from{font-size:1em}
-  to{font-size:3em}
 }
 
 .hidden-footer {
